@@ -14,3 +14,20 @@
 .progress-bar {
     transition: all 1s;
 }
+
+#timerBar {
+    width: 100%;
+    transition-timing-function: linear;
+}
+
+.progress {
+    position: relative;
+}
+
+.timerLabel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1ch;
+
+}

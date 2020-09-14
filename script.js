@@ -1,8 +1,11 @@
-let timeLeft = 20;
+let timeLeft = 21;
+const maxTime = 20;
 let timeEl = document.querySelector("#timer");
+let timerLabel = document.querySelector(".timerLabel");
+let timerBar = document.querySelector("#timerBar");
 
 let percentage = 0;
-let progressBar = document.querySelector(".progress-bar")
+let progressBar = document.querySelector("#progressBar")
 
 // Countdown timer
 let timer = setInterval(()=>{
@@ -13,5 +16,8 @@ let timer = setInterval(()=>{
     }
 
     timeEl.textContent = "Time: "+ (timeLeft.toString().padStart(2,'0'));
+    timerLabel.textContent = timeLeft.toString().padStart(2,'0');
+
+    timerBar.style.width = ((timeLeft-1)/maxTime*100)+"%"
 }, 1000);
 
