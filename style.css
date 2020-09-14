@@ -2,3 +2,15 @@
     width:3em;
     text-align:center;
 }
+
+/* #enterScoreForm {
+    visibility: hidden;
+}
+
+#highScoreDiv {
+    visibility: hidden;
+} */
+
+.progress-bar {
+    transition: all 1s;
+}
