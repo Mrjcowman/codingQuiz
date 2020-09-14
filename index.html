@@ -41,7 +41,9 @@
                 <button class="btn btn-primary stretched-link">D</button> <label> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label><br>
             </div>
 
-            <hr>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
             <p id="answerStatus">Correct!</p>
         </div>
 
@@ -59,8 +61,15 @@
         </form>
 
         <!-- The high score display -->
-        <div id="highScore">
-
+        <div id="highScoreDiv">
+            <h2>High Scores</h2>
+            <ul class="list-group">
+                <li class="list-group-item">JJC - </li>
+                <li class="list-group-item">JJC - </li>
+                <li class="list-group-item">JJC - </li>
+            </ul>
+            <button class="btn btn-primary m-2 mr-auto">Return</button>
+            <button class="btn btn-outline-danger m-2">Clear High Scores</button>
         </div>
     </main>
 </body>
