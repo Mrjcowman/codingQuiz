@@ -41,12 +41,13 @@
                 <button class="btn btn-primary stretched-link">D</button> <label> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label><br>
             </div>
 
-            <div class="progress my-2">
-                <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress my-2" id="progressBar">
+                <span class="barLabel">0/5</span>
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div class="progress">
-                <span class="timerLabel">20</span>
-                <div class="progress-bar bg-warning" id = "timerBar" role="timer" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+            <div class="progress" id="timerBar">
+                <span class="barLabel">20</span>
+                <div class="progress-bar bg-warning" role="timer" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
             </div>
             <p id="answerStatus">Correct!</p>
         </div>
