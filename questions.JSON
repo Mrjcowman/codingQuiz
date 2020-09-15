@@ -1,0 +1,52 @@
+[
+    {
+        "question":"What keyword is used to define a variable?",
+        "answer":0,
+        "options": [
+            "var",
+            "function",
+            "if",
+            "return"
+        ]
+    },
+    {
+        "question":"",
+        "answer":3,
+        "options": [
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    {
+        "question":"",
+        "answer":1,
+        "options": [
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    {
+        "question":"",
+        "answer":3,
+        "options": [
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    {
+        "question":"",
+        "answer":2,
+        "options": [
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
+]
