@@ -3,16 +3,28 @@
     text-align:center;
 }
 
-/* #enterScoreForm {
+#startPromptDiv {
+    visibility: hidden;
+}
+
+#quizQuestionDiv {
+    /* visibility: hidden; */
+}
+
+#enterScoreForm {
     visibility: hidden;
 }
 
 #highScoreDiv {
     visibility: hidden;
-} */
+}
 
 .progress-bar {
     transition: all 1s;
+}
+
+#progressBar .progress-bar {
+    transition-timing-function: ease-in;
 }
 
 #timerBar .progress-bar{
