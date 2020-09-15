@@ -10,6 +10,7 @@ let percentage = 0;
 let progressBar = document.querySelector("#progressBar .progress-bar")
 
 let questions = [];
+let rightAnswer = 0;
 
 
 
@@ -53,15 +54,32 @@ let loadQuestions = async ()=>{
 
 // Handle start button press
 document.querySelector("#startButton").addEventListener("click", event=>{
-    console.log("click!");
     document.querySelector("#startPromptDiv").style.display = "none";
     document.querySelector("#quizQuestionDiv").style.display = "block";
 
     timer = setInterval(tickTimer, 1000);
 
+    displayQuestion();
+
 })
 
-// TODO: Display question
+// Displays the question at the given index
+let displayQuestion = (questionIndex=0)=>{
+    if(questionIndex>questions.length){
+        console.error("Question Index out of bounds! Cannot load the question at index "+questionIndex+", aborting.");
+        return;
+    }
+    let thisQuestion = questions[questionIndex];
+    console.log(thisQuestion);
+    $("#questionHeading").text(thisQuestion.question);
+    console.log(thisQuestion.options[0]);
+    $("#answerA").find("label").text(thisQuestion.options[0]);
+    $("#answerB").find("label").text(thisQuestion.options[1]);
+    $("#answerC").find("label").text(thisQuestion.options[2]);
+    $("#answerD").find("label").text(thisQuestion.options[3]);
+
+    rightAnswer = thisQuestion.answer;
+}
 
 // TODO: Handle correct answer
 
@@ -85,12 +103,15 @@ let initializeQuiz = async () => {
     document.querySelector("#loading").style.visibility = "visible";
     timeLeft = maxTime+1;
     
-    if(questions.length==0)
-    await loadQuestions();
+    if(questions.length==0){
+        await loadQuestions();
+    }
     
     document.querySelector("#startButton").disabled = false;
     document.querySelector("#loading").style.visibility = "hidden";
     console.log("Initialized!");
 }
 
-initializeQuiz();
+document.onload(()=>{
+    initializeQuiz();
+})
