@@ -3,22 +3,6 @@
     text-align:center;
 }
 
-#startPromptDiv {
-    visibility: hidden;
-}
-
-#quizQuestionDiv {
-    /* visibility: hidden; */
-}
-
-#enterScoreForm {
-    visibility: hidden;
-}
-
-#highScoreDiv {
-    visibility: hidden;
-}
-
 .progress-bar {
     transition: all 1s;
 }

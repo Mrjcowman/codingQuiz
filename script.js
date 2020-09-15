@@ -1,6 +1,7 @@
 const maxTime = 20;
 let timeLeft = maxTime+1;   // Offset by 1 so timer can start ticking right away
 
+let timer;
 let timeEl = document.querySelector("#timer");
 let timerLabel = document.querySelector("#timerBar .barLabel");
 let timerBar = document.querySelector("#timerBar .progress-bar");
@@ -25,14 +26,10 @@ const tickTimer = ()=>{
     timerBar.style.width = ((timeLeft-1)/maxTime*100)+"%"
 };
 
-// const timer = setInterval(tickTimer, 1000);
-
 const timesUp = ()=>{
     clearInterval(timer);
     console.log("Time's up!");
 }
-
-// TODO: Display question
 
 // Get questions from JSON file
 let loadQuestions = async ()=>{
@@ -54,7 +51,17 @@ let loadQuestions = async ()=>{
     }
 }
 
-// TODO: Handle start button press
+// Handle start button press
+document.querySelector("#startButton").addEventListener("click", event=>{
+    console.log("click!");
+    document.querySelector("#startPromptDiv").style.display = "none";
+    document.querySelector("#quizQuestionDiv").style.display = "block";
+
+    timer = setInterval(tickTimer, 1000);
+
+})
+
+// TODO: Display question
 
 // TODO: Handle correct answer
 
@@ -68,19 +75,21 @@ let loadQuestions = async ()=>{
 
 // TODO: Randomize right answer position
 
-let initializeQuiz = () => {
-    document.querySelector("#startPromptDiv").style.visibility = "visible";
-    document.querySelector("#quizQuestionDiv").style.visibility = "hidden";
-    document.querySelector("#enterScoreForm").style.visibility = "hidden";
-    document.querySelector("#highScoreDiv").style.visibility = "hidden";
+let initializeQuiz = async () => {
+    document.querySelector("#startPromptDiv").style.display = "block";
+    document.querySelector("#quizQuestionDiv").style.display = "none";
+    document.querySelector("#enterScoreForm").style.display = "none";
+    document.querySelector("#highScoreDiv").style.display = "none";
 
     document.querySelector("#startButton").disabled = true;
+    document.querySelector("#loading").style.visibility = "visible";
     timeLeft = maxTime+1;
-
+    
     if(questions.length==0)
-        await loadQuestions();
+    await loadQuestions();
     
     document.querySelector("#startButton").disabled = false;
+    document.querySelector("#loading").style.visibility = "hidden";
     console.log("Initialized!");
 }
 
