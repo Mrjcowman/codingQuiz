@@ -28,7 +28,7 @@ const tickTimer = ()=>{
 const timesUp = ()=>{
     clearInterval(timer);
     console.log("Time's up!");
-    // TODO: go to initial input screen
+    gameOver(false);
 }
 
 // Get questions from JSON file
@@ -93,7 +93,7 @@ let checkAnswer = index => {
             $("#answerStatus").text("Correct!");
         }else{
             console.log("Game over!");
-            //TODO: go to initial input screen
+            gameOver(true);
         }
     } else {
         // Wrong!
@@ -135,6 +135,27 @@ let initializeQuiz = async () => {
     document.querySelector("#startButton").disabled = false;
     document.querySelector("#loading").style.visibility = "hidden";
     console.log("Initialized!");
+}
+
+let gameOver = win=>{
+    clearInterval(timer);
+
+    $("#startPromptDiv") .css({"display":"none"});
+    $("#quizQuestionDiv").css({"display":"none"});
+    $("#enterScoreForm") .css({"display":"block"});
+    $("#highScoreDiv")   .css({"display":"none"});
+
+    $("#initialInput").attr("value", "");
+
+
+    if(win){
+        $("form h2").text("You did it!");
+        $(".yourScore").text('Your score is: '+timeLeft);
+    } else {
+        $("form h2").text("You ran out of time...");
+        $(".yourScore").text("Your score is: 0");
+        
+    }
 }
 
 initializeQuiz();
