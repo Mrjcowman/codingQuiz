@@ -27,3 +27,7 @@
     margin-left: -1ch;
 
 }
+
+.list-group-item {
+    font-family: monospace;
+}

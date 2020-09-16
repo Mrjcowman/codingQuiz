@@ -108,8 +108,63 @@ $("#answerC").find("button").on("click", ()=>{checkAnswer(2)});
 $("#answerD").find("button").on("click", ()=>{checkAnswer(3)});
 
 // TODO: Handle initial input
+$("form button").on("click", event=>{
+    event.preventDefault();
+    let initialInputVal = $("#initialInput").val();
 
-// TODO: Handle high scores
+    if(initialInputVal.trim()){
+        addScore(initialInputVal, timeLeft);
+    }else{
+        console.log("No initials input!");
+    }
+
+    displayHighScores();
+})
+
+// High Score Processes:
+
+let addScore = (initials, score=0)=>{
+    let scoresArr = JSON.parse(localStorage.getItem("scores"));
+    let thisScoreData = {"initials": initials, "score": score};
+
+    if(scoresArr){
+        scoresArr.push(thisScoreData);
+        scoresArr.sort((a, b) => {
+            return b.score - a.score;
+        })
+    }else{
+        scoresArr=[thisScoreData];
+    }
+
+    localStorage.setItem("scores", JSON.stringify(scoresArr));
+}
+
+let displayHighScores = ()=>{    
+    let scoresArr = JSON.parse(localStorage.getItem("scores"));
+    $("#highScoreDiv ol").html("");
+
+    scoresArr.forEach((score, index) =>{
+        if(index>=5) return; // Only display the top 5 scores
+        
+        let place = index+1;
+        let paddedInitials = score.initials.padStart(3, " ");
+        let paddedScore = score.score.padStart(2, " ");
+        let text = place+". "+paddedInitials+" - "+paddedScore;
+
+        let thisLi = $("<li>").addClass("list-group-item");
+        thisLi.text(text);
+        
+        $("#highScoreDiv ol").append(thisLi);
+    })
+
+    $("#startPromptDiv") .css({"display":"none"});
+    $("#quizQuestionDiv").css({"display":"none"});
+    $("#enterScoreForm") .css({"display":"none"});
+    $("#highScoreDiv")   .css({"display":"block"});
+
+}
+
+// TODO: Handle high score clear
 
 // TODO: Handle restart
 
@@ -135,6 +190,8 @@ let initializeQuiz = async () => {
     document.querySelector("#startButton").disabled = false;
     document.querySelector("#loading").style.visibility = "hidden";
     console.log("Initialized!");
+
+    localStorage.setItem("test", "Hello");
 }
 
 let gameOver = win=>{
