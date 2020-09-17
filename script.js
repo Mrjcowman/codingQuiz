@@ -106,10 +106,10 @@ let checkAnswer = index => {
     }
 }
 
-$("#answerA").find("button").on("click", ()=>{checkAnswer(0)});
-$("#answerB").find("button").on("click", ()=>{checkAnswer(1)});
-$("#answerC").find("button").on("click", ()=>{checkAnswer(2)});
-$("#answerD").find("button").on("click", ()=>{checkAnswer(3)});
+$("#answerA").find("button").on("click", event=>{event.target.blur(); checkAnswer(0)});
+$("#answerB").find("button").on("click", event=>{event.target.blur(); checkAnswer(1)});
+$("#answerC").find("button").on("click", event=>{event.target.blur(); checkAnswer(2)});
+$("#answerD").find("button").on("click", event=>{event.target.blur(); checkAnswer(3)});
 
 // Handle initial input
 $("form button").on("click", event=>{
