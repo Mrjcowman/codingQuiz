@@ -10,33 +10,33 @@
         ]
     },
     {
-        "question":"D?",
+        "question":"If I want to make a decision based on a variable, what statement do I use?",
         "answer":3,
         "options": [
-            "No",
-            "Uh-uh",
-            "Nope",
-            "Yee"
+            "return",
+            "break",
+            "for",
+            "if"
         ]
     },
     {
-        "question":"B.",
+        "question":"What does a loop do in code?",
         "answer":1,
         "options": [
-            "A",
-            "B?",
-            "C...",
-            "D!"
+            "Ties my shoes",
+            "Repeats a chunk of code",
+            "Makes people sick on roller coasters",
+            "Backs my fire mixtape"
         ]
     },
     {
-        "question":"D is the right answer",
+        "question":"What is a function?",
         "answer":3,
         "options": [
-            "Blah",
-            "Blah",
-            "Blah",
-            "Blah"
+            "A way to save a piece of information",
+            "A reason for code",
+            "What you get back when you perform an operation",
+            "A piece of code that can be accessed from other places"
         ]
     },
     {
@@ -44,9 +44,9 @@
         "answer":2,
         "options": [
             "C",
-            "Sea",
-            "See?",
-            "Cee"
+            "How about C++?",
+            "I'd rather pick javascript",
+            "Nah, Haskell. Functional programming for life!"
         ]
     }
 ]
