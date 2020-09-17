@@ -125,7 +125,7 @@ $("form button").on("click", event=>{
 
 let addScore = (initials, score=0)=>{
     let scoresArr = JSON.parse(localStorage.getItem("scores"));
-    let thisScoreData = {"initials": initials, "score": score};
+    let thisScoreData = {"initials": initials.toUpperCase(), "score": score};
 
     if(scoresArr){
         scoresArr.push(thisScoreData);
@@ -143,19 +143,21 @@ let displayHighScores = ()=>{
     let scoresArr = JSON.parse(localStorage.getItem("scores"));
     $("#highScoreDiv ol").html("");
 
-    scoresArr.forEach((score, index) =>{
-        if(index>=5) return; // Only display the top 5 scores
-        
-        let place = index+1;
-        let paddedInitials = score.initials.padStart(3, " ");
-        let paddedScore = score.score.padStart(2, " ");
-        let text = place+". "+paddedInitials+" - "+paddedScore;
+    if(scoresArr) {
+        scoresArr.forEach((score, index) =>{
+            if(index>=5) return; // Only display the top 5 scores
+            
+            let place = index+1;
+            let paddedInitials = score.initials.padStart(3,"\xa0");
+            let paddedScore = score.score.toString().padStart(2, "0");
+            let text = place+". "+paddedInitials+" - "+paddedScore;
 
-        let thisLi = $("<li>").addClass("list-group-item");
-        thisLi.text(text);
-        
-        $("#highScoreDiv ol").append(thisLi);
-    })
+            let thisLi = $("<li>").addClass("list-group-item");
+            thisLi.text(text);
+            
+            $("#highScoreDiv ol").append(thisLi);
+        })
+    }
 
     $("#startPromptDiv") .css({"display":"none"});
     $("#quizQuestionDiv").css({"display":"none"});
@@ -164,9 +166,22 @@ let displayHighScores = ()=>{
 
 }
 
-// TODO: Handle high score clear
+$("nav a").on("click", function(){
+    initializeQuiz();
+    displayHighScores();
+})
 
-// TODO: Handle restart
+// Handle high score clear
+$("#clearButton").on("click", event=>{
+    localStorage.clear();
+    displayHighScores();
+})
+
+
+// Handle restart
+$("#returnButton").on("click", event=>{
+    initializeQuiz();
+})
 
 // TODO: Randomize right answer position
 
@@ -202,7 +217,7 @@ let gameOver = win=>{
     $("#enterScoreForm") .css({"display":"block"});
     $("#highScoreDiv")   .css({"display":"none"});
 
-    $("#initialInput").attr("value", "");
+    $("#initialInput").val("");
 
 
     if(win){
