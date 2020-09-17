@@ -1,5 +1,10 @@
+// TODO: refactor to use jQuery throughout whole code for consistency
+// TODO: reorganize for easier readability
+// Sorry grader ^^;
+
 const maxTime = 50;
-let timeLeft = maxTime+1;   // Offset by 1 so timer can start ticking right away
+const tick = 0.05;
+let timeLeft = maxTime+tick;   // Offset by 1 tick so timer can start ticking right away
 
 let timer;
 let timerLabel = document.querySelector("#timerBar .barLabel");
@@ -12,17 +17,15 @@ let questions = [];
 let rightAnswer = 0;
 let currentQuestion = 0;
 
-
-
 // Countdown timer
 const tickTimer = ()=>{
-    timeLeft--;
+    timeLeft-=tick;
     if(timeLeft<=0){
         timesUp();
     }
-    timerLabel.textContent = timeLeft.toString().padStart(2,'0');
+    timerLabel.textContent = Math.round(timeLeft).toString().padStart(2,'0');
 
-    timerBar.style.width = ((timeLeft-1)/maxTime*100)+"%"
+    timerBar.style.width = ((timeLeft-tick)/maxTime*100)+"%"
 };
 
 const timesUp = ()=>{
@@ -56,7 +59,8 @@ document.querySelector("#startButton").addEventListener("click", event=>{
     document.querySelector("#startPromptDiv").style.display = "none";
     document.querySelector("#quizQuestionDiv").style.display = "block";
 
-    timer = setInterval(tickTimer, 1000);
+    timer = setInterval(tickTimer, 1000*tick);
+    tickTimer();
 
     displayQuestion(currentQuestion);
 
@@ -107,7 +111,7 @@ $("#answerB").find("button").on("click", ()=>{checkAnswer(1)});
 $("#answerC").find("button").on("click", ()=>{checkAnswer(2)});
 $("#answerD").find("button").on("click", ()=>{checkAnswer(3)});
 
-// TODO: Handle initial input
+// Handle initial input
 $("form button").on("click", event=>{
     event.preventDefault();
     let initialInputVal = $("#initialInput").val();
@@ -195,7 +199,7 @@ let initializeQuiz = async () => {
 
     document.querySelector("#startButton").disabled = true;
     document.querySelector("#loading").style.visibility = "visible";
-    timeLeft = maxTime+1;
+    timeLeft = maxTime+tick;
     currentQuestion = 0;
     
     if(questions.length==0){
@@ -211,6 +215,7 @@ let initializeQuiz = async () => {
 
 let gameOver = win=>{
     clearInterval(timer);
+    timeLeft = Math.round(timeLeft);
 
     $("#startPromptDiv") .css({"display":"none"});
     $("#quizQuestionDiv").css({"display":"none"});

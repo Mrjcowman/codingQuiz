@@ -3,16 +3,14 @@
     text-align:center;
 }
 
-.progress-bar {
-    transition: all 1s;
-}
-
 #progressBar .progress-bar {
+    transition: all 1s;
     transition-timing-function: ease-in;
 }
 
 #timerBar .progress-bar{
     width: 100%;
+    transition: all 0.05s;
     transition-timing-function: linear;
 }
 
